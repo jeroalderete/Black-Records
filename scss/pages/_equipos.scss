@@ -1,0 +1,306 @@
+// EQUIPOS MOBILE PAGE //
+
+.main-equipos {
+    display: grid;
+    grid-template-areas:
+        "main-equipos-title"
+        "card1"
+        "card2"
+        "card3"
+        "card4"
+        "card5"
+        "card6"
+        "horizontal-line-vst"
+        "vst-title"
+        "card-vst-section"
+        "horizontal-line-carousel"
+        "carousel-title"
+        "carousel-gallery";
+    gap: 1rem;
+
+    .main-equipos-title {
+        grid-area: main-equipos-title;
+        padding-top: $padding2;
+        text-align: center;
+        text-transform: capitalize;
+        color: $text-color;
+        letter-spacing: $letter-spacing2;
+        margin-bottom: $margin2;
+
+        h1 {
+            font-size: $title-size2-5;
+        }
+    }
+
+    .card1 {
+        grid-area: card1;
+    }
+
+    .card2 {
+        grid-area: card2;
+    }
+
+    .card3 {
+        grid-area: card3;
+    }
+
+    .card4 {
+        grid-area: card4;
+    }
+
+    .card5 {
+        grid-area: card5;
+    }
+
+    .card6 {
+        grid-area: card6;
+    }
+
+    .card1,
+    .card2,
+    .card3,
+    .card4,
+    .card5,
+    .card6 {
+        @include flexcol;
+
+        .equipamiento-card {
+            position: relative;
+            @include medidas (300px, 300px);
+            transform-style: preserve-3d;
+
+            .face {
+                position: absolute;
+                top: 0;
+                left: 0;
+                @include medidas (100%, 100%);
+                transform-style: preserve-3d;
+                @include flexrow;
+                backface-visibility: hidden;
+                transition: 2s ease-in-out;
+                transform: perspective(500px) rotateY(0deg);
+
+                img {
+                    padding: $padding1;
+                    border: $border-card;
+                    @include medidas (250px, 200px);
+                }
+            }
+
+            .face.back {
+                @include flexcol;
+                text-align: center;
+                transform: perspective(500px) rotateY(180deg);
+            }
+
+            &:hover {
+                .face.front {
+                    transform: perspective(500px) rotateY(180deg);
+                }
+
+                .face.back {
+                    transform: perspective(500px) rotateY(360deg);
+                }
+            }
+
+            div {
+                a {
+                    color: $white-hover;
+
+                    p {
+                        span {
+                            display: block;
+                        }
+
+                        &:hover {
+                            cursor: pointer;
+                            color: #e52e71;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .vst-title {
+        grid-area: vst-title;
+        text-align: center;
+        display: none;
+
+        article {
+            h4 {
+                font-size: $title-size4;
+            }
+        }
+    }
+
+    .card-vst-section {
+        grid-area: card-vst-section;
+        display: flex;
+        padding: 4rem 6rem 6rem 6rem;
+        overflow-x: scroll;
+        display: none;
+
+        &::-webkit-scrollbar {
+            @include medidas(10px, 10px);
+        }
+
+        &::-webkit-scrollbar-thumb {
+            background: #201c29;
+            border-radius: 0.625rem;
+            box-shadow: inset 2px 2px 2px hsla(0, 0%, 100%, .25), inset -2px -2px 2px rgba(0, 0, 0, .25);
+        }
+
+        &::-webkit-scrollbar-track {
+            background: linear-gradient(90deg, #201c29, #201c29 1px, #17141d 0, #17141d);
+        }
+
+        .card-vst1,
+        .card-vst2,
+        .card-vst3,
+        .card-vst3,
+        .card-vst4,
+        .card-vst5,
+        .card-vst6,
+        .card-vst7 {
+            @extend %card-giratoria;
+
+            &:focus-within~.card-vst1,
+            &:focus-within~.card-vst2,
+            &:focus-within~.card-vst3,
+            &:focus-within~.card-vst4,
+            &:focus-within~.card-vst5,
+            &:focus-within~.card-vst6,
+            &:focus-within~.card-vst7 {
+                transform: translateX(130px);
+            }
+
+            &:hover~.card-vst1,
+            &:hover~.card-vst2,
+            &:hover~.card-vst3,
+            &:hover~.card-vst4,
+            &:hover~.card-vst5,
+            &:hover~.card-vst6,
+            &:hover~.card-vst7 {
+                transform: translateX(130px);
+            }
+
+            &:hover {
+                transform: translateY(-1rem);
+            }
+
+            &:not(:first-child) {
+                margin-left: -8.125rem;
+            }
+        }
+
+        .card-article {
+            p {
+                font-size: 0.9rem;
+                margin: 0 0 1rem;
+                color: #7a7a8c;
+            }
+
+            h2 {
+                font-size: 1.25rem;
+                margin: .25rem 0 auto;
+                color: inherit;
+                border: 0;
+                display: inline-block;
+                cursor: pointer;
+
+                &:hover {
+                    @extend %vst-hover;
+                }
+            }
+        }
+
+        .card-author {
+            margin: 3rem 0 0;
+            display: grid;
+            grid-template-columns: 75px 1fr;
+            align-items: center;
+            position: relative;
+        }
+
+        .author-avatar {
+            grid-area: auto;
+            align-self: start;
+            position: relative;
+            box-sizing: border-box;
+
+            img {
+                @include medidas(40px, 40px);
+                border-radius: 50%;
+                filter: grayscale(100%);
+                display: block;
+                overflow: hidden;
+                margin: 1rem 0.8rem;
+            }
+        }
+
+        .author-name {
+            grid-area: auto;
+            box-sizing: border-box;
+        }
+
+        .author-name-prefix {
+            font-style: normal;
+            font-weight: 700;
+            color: #7a7a8c;
+        }
+
+        .half-circle {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            @include medidas (60px, 48px);
+            fill: none;
+            stroke: #ff8a00;
+            stroke-width: 8;
+            stroke-linecap: round;
+            pointer-events: none;
+        }
+
+        .tags {
+            margin: 1rem 0 2rem;
+            padding: .5rem 0 1rem;
+            line-height: $line-height2;
+            margin-bottom: 0;
+
+            span {
+                display: block;
+            }
+
+            a {
+                @include vst-link;
+
+                &:hover {
+                    @extend %vst-hover;
+                    border-color: $text-color;
+                }
+            }
+        }
+    }
+
+    .carousel-title {
+        grid-area: carousel-title;
+        margin: 0 0.5rem;
+
+        h6 {
+            font-size: $title-size2-5;
+            width: 100%;
+            text-align: center;
+            color: $title-white;
+            letter-spacing: $letter-spacing2;
+        }
+    }
+
+    .container-fluid {
+        grid-area: carousel-gallery;
+
+        #carousel-gallery {
+            margin: 0 1rem;
+        }
+    }
+}
